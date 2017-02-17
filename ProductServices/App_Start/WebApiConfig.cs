@@ -26,6 +26,11 @@
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 
             builder.EntitySet<Product>("Products");
+            builder.EntityType<Product>().Filter("Name", "Price", "Category");
+            builder.EntityType<Product>().OrderBy(System.Web.OData.Query.QueryOptionSetting.Allowed, "Name", "Price");
+            builder.EntityType<Product>().Count();
+            builder.EntityType<Product>().Expand();
+            builder.EntityType<Product>().Select();
 
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
